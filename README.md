@@ -1,4 +1,12 @@
-LoveFramesDoc
-=============
+Löve Frames Doc
+===============
 
-Copy the official documentation to a git repository and be able to read it over the github.io service
+This documentation online viewable at :
+
+ * http://tst2005.github.io/LoveFramesDoc/
+
+The official documentation website :
+
+ * http://nikolairesokav.com/projects/loveframes
+
+Regards,

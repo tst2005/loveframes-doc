@@ -1,0 +1,243 @@
+
+			<html>
+			<head>
+			<link href="../static/css/main.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/src/shCore.js"></script>
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/scripts/shBrushLua.js"></script>
+			</head>
+			<body>
+			<div id="container">
+			<div id="content"> 	<div class="content-header">
+		L&#246;ve Frames - The Frame Object
+	</div>
+
+	<a href="../main.html" class="document-link" style="text-align: center;">Return to Index</a>
+	
+	<div class="content-section-header">
+		Information
+	</div>
+	
+	<div class="content-section-body">
+		The frame object is a mouse-moveable object meant to serve as a base parent for other objects. 
+		It has a close button and can have a custom name. It also has a docking functionality that lets it dock
+		onto other frame objects when being moved with the mouse.
+	</div>
+	
+	<div class="content-section-header">
+		Example Use
+	</div>
+	
+	<div class="content-section-body">
+		<pre class="brush: lua">local frame = loveframes.Create("frame")
+frame:SetName("Frame")
+frame:CenterWithinArea(unpack(demo.centerarea))
+frame:SetIcon("resources/images/application.png")
+frame:SetDockable(true)
+		
+local text = loveframes.Create("text", frame)
+text:SetText("This is an example frame.")
+text.Update = function(object, dt)
+	object:CenterX()
+	object:SetY(40)
+end
+		
+local button = loveframes.Create("button", frame)
+button:SetText("Modal")
+button:SetWidth(100)
+button:Center()
+button.Update = function(object, dt)
+	local modal = object:GetParent():GetModal()
+	if modal then
+		object:SetText("Remove Modal")
+		object.OnClick = function()
+			object:GetParent():SetModal(false)
+		end
+	else
+		object:SetText("Set Modal")
+		object.OnClick = function()
+			object:GetParent():SetModal(true)
+		end
+	end
+end</pre>
+	
+		<div style="text-align: center;">
+			<img src="../static/images/documents/loveframes/frame.png">
+		</div>
+		
+	</div>
+	
+	<div class="content-section-header">
+		Event Callbacks
+	</div>
+	
+	<div class="content-section-body">
+		<strong>OnClose</strong> - Called when the object is closed via it's close button <br/>
+		- Arguments passed: self [object] <br/>
+		- Note: Returning false in this callback will prevent the frame from being closed.
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local frame = loveframes.Create("frame")
+frame.OnClose = function(object)
+	print("The frame was closed.")
+end</pre>
+		<strong>OnDock</strong> - Called when the object docks onto another frame <br/>
+		- Arguments passed: self [object], dock_object [object]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local frame = loveframes.Create("frame")
+frame.OnDock = function(object, dock_object)
+	print("Frame " ..object:GetName().. " has docked onto frame " ..dock_object:GetName().. ".")
+end</pre>
+
+	<strong>OnResize</strong> - Called when the object is resized by the user <br/>
+		- Arguments passed: self [object], width [number], height [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local frame = loveframes.Create("frame")
+frame.OnResize = function(object, width, height)
+	print(width, height)
+end</pre>
+	</div>
+	
+	<div class="content-section-header">
+		Methods
+	</div>
+	
+	<div class="content-section-body">
+	
+		<strong>SetName</strong> - Sets the object's name
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetName(name[string])</pre>
+		
+		<strong>GetName</strong> - Gets the object's name <br/>
+		- Returns 1 value: object name [string]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local name = object:GetName()</pre>
+		
+		<strong>SetDraggable</strong> - Sets whether the object can be dragged or not
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetDraggable(draggable[boolean])</pre>
+		
+		<strong>GetDraggable</strong> - Gets whether the object can be dragged or not <br/>
+		- Returns 1 value: draggable [boolean]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local draggable = object:GetDraggable()</pre>
+		
+		<strong>SetScreenLocked</strong> - Sets whether the frame can be moved passed the boundaries of the window or not
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetScreenLocked(screenlocked[boolean])</pre>
+		
+		<strong>GetScreenLocked</strong> - Gets whether the frame can be moved passed the boundaries of the window or not <br/>
+		- Returns 1 value: screen locked [boolean]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local screenlocked = object:GetScreenLocked()</pre>
+		
+		<strong>ShowCloseButton</strong> - Sets whether the object's close button should be drawn and clickable or not
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:ShowCloseButton(show[boolean])</pre>
+		
+		<strong>MakeTop</strong> - Makes the object the top most object
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:MakeTop()</pre>
+		
+		<strong>SetModal</strong> - Used to modal or unmodal the object
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetModal(modal[boolean])</pre>
+		
+		<strong>GetModal</strong> - Gets whether the object can is modaled or not <br/>
+		- Returns 1 value: modaled [boolean]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local modal = object:GetModal()</pre>
+		
+		<strong>SetParentLocked</strong> - Sets whether the object can or cannot be dragged outside of it's parent's boundaries
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetParentLocked(parentlocked[boolean])</pre>
+		
+		<strong>GetParentLocked</strong> - Gets whether the object can or cannot be dragged outside of it's parent's boundaries <br/>
+		- Returns 1 value: parent locked [boolean]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local parentlocked = object:GetParentLocked()</pre>
+		
+		<strong>SetIcon</strong> - Sets the object's icon
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetIcon(icon[string] or icon[image])</pre>
+		
+		<strong>GetIcon</strong> - Gets the object's icon <br/>
+		- Returns 1 value: icon [image]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local icon = object:GetIcon()</pre>
+		
+		<strong>SetDockable</strong> - Sets whether or not the object can dock onto other frames or be docked by other frames
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetDockable(dockable[bool])</pre>
+		
+		<strong>GetDockable</strong> - Gets whether or not the object is dockable <br/>
+		- Returns 1 value: dockable [bool]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local dockable = object:GetDockable()</pre>
+		
+		<strong>SetDockZoneSize</strong> - Sets the size of the object's dock zone
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetDockZoneSize(size[number])</pre>
+		
+		<strong>SetResizable</strong> - Sets whether or not the object is resizable
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetResizable(resizable[bool])</pre>
+		
+		<strong>GetResizable</strong> - Gets whether or not the object is resizable <br/>
+		- Returns 1 value: resizable [bool]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local resizable = object:GetResizable()</pre>
+		
+		<strong>SetMinWidth</strong> - Sets the object's minimum width
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetMinWidth(width[number])</pre>
+		
+		<strong>GetMinWidth</strong> - Gets the object's minimum width <br/>
+		- Returns 1 value: minwidth [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local minwidth = object:GetMinWidth()</pre>
+		
+		<strong>SetMaxWidth</strong> - Sets the object's maximum width
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetMaxWidth(width[number])</pre>
+		
+		<strong>GetMaxWidth</strong> - Gets the object's maximum width <br/>
+		- Returns 1 value: maxwidth [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local maxwidth = object:GetMaxWidth()</pre>
+		
+		<strong>SetMinHeight</strong> - Sets the object's minimum height
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetMinHeight(height[number])</pre>
+		
+		<strong>GetMinHeight</strong> - Gets the object's minimum height <br/>
+		- Returns 1 value: minheight [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local minheight = object:GetMinHeight()</pre>
+		
+		<strong>SetMaxHeight</strong> - Sets the object's maximum height
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetMaxHeight(height[number])</pre>
+		
+		<strong>GetMaxHeight</strong> - Gets the object's maximum height <br/>
+		- Returns 1 value: maxheight [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local maxheight = object:GetMaxHeight()</pre>
+		
+		<strong>SetAlwaysOnTop</strong> - Sets whether or not the object should always be drawn on top of other objects <br/>
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetAlwaysOnTop(always_on_top[bool])</pre>
+		
+		<strong>GetAlwaysOnTop</strong> - Gets whether or not the object should always be drawn on top of other objects <br/>
+		- Returns 1 value: always_on_top [bool]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local always_on_top = object:GetAlwaysOnTop()</pre>
+		
+	</div>
+	
+	<script type="text/javascript">SyntaxHighlighter.all();</script> 
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>

@@ -1,0 +1,66 @@
+
+			<html>
+			<head>
+			<link href="../static/css/main.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/src/shCore.js"></script>
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/scripts/shBrushLua.js"></script>
+			</head>
+			<body>
+			<div id="container">
+			<div id="content"> 	<div class="content-header">
+		L&#246;ve Frames - The Panel Object
+	</div>
+
+	<a href="../main.html" class="document-link" style="text-align: center;">Return to Index</a>
+	
+	<div class="content-section-header">
+		Information
+	</div>
+	
+	<div class="content-section-body">
+		The panel object has nothing unique about it. It is simply meant to be a parent object for other objects.
+	</div>
+	
+	<div class="content-section-header">
+		Example Use
+	</div>
+	
+	<div class="content-section-body">
+		<pre class="brush: lua">local frame = loveframes.Create("frame")
+frame:SetName("Panel")
+frame:SetSize(210, 85)
+frame:CenterWithinArea(unpack(demo.centerarea))
+	
+local panel = loveframes.Create("panel", frame)
+panel:SetPos(5, 30)</pre>
+
+		<div style="text-align: center;">
+			<img src="../static/images/documents/loveframes/panel.png">
+		</div>
+		
+	</div>
+	
+	<div class="content-section-header">
+		Event Callbacks
+	</div>
+	
+	<div class="content-section-body">
+		The panel object has no unique event callbacks.
+	</div>
+	
+	<div class="content-section-header">
+		Methods
+	</div>
+	
+	<div class="content-section-body">
+		The panel object has no unique methods.
+	</div>
+	
+	<script type="text/javascript">SyntaxHighlighter.all();</script> 
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>

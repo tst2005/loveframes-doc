@@ -1,0 +1,142 @@
+
+			<html>
+			<head>
+			<link href="../static/css/main.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/src/shCore.js"></script>
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/scripts/shBrushLua.js"></script>
+			</head>
+			<body>
+			<div id="container">
+			<div id="content"> 	<div class="content-header">
+		L&#246;ve Frames - The Tooltip Object
+	</div>
+
+	<a href="../main.html" class="document-link" style="text-align: center;">Return to Index</a>
+	
+	<div class="content-section-header">
+		Information
+	</div>
+	
+	<div class="content-section-body">
+		The tooltip object displays text when the mouse cursor hovers over an object it has been asigned to.
+	</div>
+	
+	<div class="content-section-header">
+		Example Use
+	</div>
+	
+	<div class="content-section-body">
+		<pre class="brush: lua">local panel = loveframes.Create("panel")
+
+local tooltip = loveframes.Create("tooltip")
+tooltip:SetObject(panel)
+tooltip:SetPadding(10)
+tooltip:SetText("This is a panel object.")</pre>
+	</div>
+	
+	<div class="content-section-header">
+		Event Callbacks
+	</div>
+	
+	<div class="content-section-body">
+		The tooltip object has no unique event callbacks.
+	</div>
+	
+	<div class="content-section-header">
+		Methods
+	</div>
+	
+	<div class="content-section-body">
+	
+		<strong>SetFollowCursor</strong> - Sets whether or not the object should follow the mouse cursor when it is visible
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetFollowCursor(followcursor[boolean])</pre>
+		
+		<strong>GetFollowCursor</strong> - Gets whether or not the object should follow the mouse cursor when it is visible<br/>
+		- Returns 1 value: follow_cursor [bool]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local follow_cursor = object:GetFollowCursor()</pre>
+		
+		<strong>SetFollowObject</strong> - Sets whether or not the tooltip should follow it's assigned object
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetFollowObject(followobject[boolean])</pre>
+		
+		<strong>GetFollowObject</strong> - Gets whether or not the tooltip should follow it's assigned object<br/>
+		- Returns 1 value: follow_object [bool]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local follow_object = object:GetFollowObject()</pre>
+		
+		<strong>SetObject</strong> - Sets the object of the tooltip. The tooltip will make itself visible when the object specified is in a hover state.
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetObject(object[object])</pre>
+		
+		<strong>GetObject</strong> - Gets the tooltip's object<br/>
+		- Returns 1 value: object [object]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local object = object:GetObject()</pre>
+		
+		<strong>SetText</strong> - Sets the object's text. <br/>
+		- Note: You can use color formatted tables of text with this method the same way you would with the text object.
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetText(text[string or table])</pre>
+		
+		<strong>GetText</strong> - Gets the objects text <br/>
+		- Returns 1 value: text [string]
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:GetText()</pre>
+		
+		<strong>SetTextMaxWidth</strong> - Sets the max width the object's text will be before wrapping itself. <br/>
+		- Note: Set to 0 to disable wrapping
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetTextMaxWidth(maxwidth[number])</pre>
+		
+		<strong>SetOffsetX</strong> - Set's the object's x offset
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetOffsetX(offset_x[number])</pre>
+		
+		<strong>GetOffsetX</strong> - Gets the object's x offset <br/>
+		- Returns 1 value: offset_x [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local offset_x = object:GetOffsetX()</pre>
+		
+		<strong>SetOffsetY</strong> - Set's the object's y offset
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetOffsetY(offset_y[number])</pre>
+		
+		<strong>GetOffsetY</strong> - Gets the object's y offset <br/>
+		- Returns 1 value: offset_y [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local offset_y = object:GetOffsetY()</pre>
+		
+		<strong>SetOffsets</strong> - Sets the object's x and y offsets
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetOffsets(xoffset[number], yoffset[number])</pre>
+		
+		<strong>GetOffsets</strong> - Gets the object's x and y offsets <br/>
+		- Returns 2 value: offset_x [number], offset_y [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local offset_x, offset_y = object:GetOffsets()</pre>
+		
+		<strong>SetPadding</strong> - Set's the object's padding
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetPadding(padding[number])</pre>
+		
+		<strong>SetFont</strong> - Set's the object's font
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetFont(font[font])</pre>
+		
+		<strong>GetFont</strong> - Gets the object's font <br/>
+		- Returns 1 value: font [font]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local font = object:GetFont()</pre>
+		
+	</div>
+	
+	<script type="text/javascript">SyntaxHighlighter.all();</script> 
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>

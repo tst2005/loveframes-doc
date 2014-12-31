@@ -1,0 +1,160 @@
+
+			<html>
+			<head>
+			<link href="../static/css/main.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/src/shCore.js"></script>
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/scripts/shBrushLua.js"></script>
+			</head>
+			<body>
+			<div id="container">
+			<div id="content"> 	<div class="content-header">
+		L&#246;ve Frames - The Grid Object
+	</div>
+	
+	<a href="../main.html" class="document-link" style="text-align: center;">Return to Index</a>
+	
+	<div class="content-section-header">
+		Information
+	</div>
+	
+	<div class="content-section-body">
+		-
+	</div>
+	
+	<div class="content-section-header">
+		Example Use
+	</div>
+	
+	<div class="content-section-body">
+		<pre class="brush: lua">local frame = loveframes.Create("frame")
+frame:SetName("Grid")
+frame:CenterWithinArea(unpack(demo.centerarea))
+		
+local grid = loveframes.Create("grid", frame)
+grid:SetPos(5, 30)
+grid:SetRows(5)
+grid:SetColumns(5)
+grid:SetCellWidth(25)
+grid:SetCellHeight(25)
+grid:SetCellPadding(5)
+grid:SetItemAutoSize(true)
+		
+local id = 1
+		
+for i=1, 5 do
+	for n=1, 5 do
+		local button = loveframes.Create("button")
+		button:SetSize(15, 15)
+		button:SetText(id)
+		grid:AddItem(button, i, n)
+		id = id + 1
+	end
+end
+		
+grid.OnSizeChanged = function(object)
+	frame:SetSize(object:GetWidth() + 10, object:GetHeight() + 35)
+	frame:CenterWithinArea(unpack(demo.centerarea))
+end</pre>
+
+		<div style="text-align: center;">
+			<img src="../static/images/documents/loveframes/grid.png">
+		</div>
+		
+	</div>
+	
+	<div class="content-section-header">
+		Event Callbacks
+	</div>
+	
+	<div class="content-section-body">
+		The grid object has no unique event callbacks.
+	</div>
+
+	<div class="content-section-header">
+		Methods
+	</div>
+
+	<div class="content-section-body">
+	
+		<strong>AddItem</strong> - Adds an item to the object
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:AddItem(object[object], row[number], column[number])</pre>
+		
+		<strong>GetItem</strong> - Gets an item from the object at the specified row and column <br/>
+		- Returns 1 value: item [object] or false [boolean] if no item was found
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local item = object:GetItem(row[number], column[number])</pre>
+		
+		<strong>SetItemAutoSize</strong> - Sets whether or not the object should auto-size its items
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetItemAutoSize(autosize[bool])</pre>
+		
+		<strong>GetItemAutoSize</strong> - Gets whether or not the object should auto-size its items <br/>
+		- Returns 1 value: autosize [boolean]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local autosize = object:GetItemAutoSize()</pre>
+		
+		<strong>SetRows</strong> - Sets the number of rows the object should have
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetRows(rows[number])</pre>
+		
+		<strong>GetRows</strong> - Gets the number of rows the object has <br/>
+		- Returns 1 value: rows [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local rows = object:GetRows()</pre>
+		
+		<strong>SetColumns</strong> - Sets the number of columns the object should have
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetColumns(columns[number])</pre>
+		
+		<strong>GetColumns</strong> - Gets the number of columns the object has <br/>
+		- Returns 1 value: columns [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local columns = object:GetColumns()</pre>
+		
+		<strong>SetCellWidth</strong> - Sets the width of the object's cells
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetCellWidth(cellwidth[number])</pre>
+		
+		<strong>GetCellWidth</strong> - Gets the width of the object's cells <br/>
+		- Returns 1 value: cellwidth [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local cellwidth = object:GetCellWidth()</pre>
+		
+		<strong>SetCellHeight</strong> - Sets the height of the object's cells
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetCellHeight(cellheight[number])</pre>
+		
+		<strong>GetCellHeight</strong> - Gets the height of the object's cells <br/>
+		- Returns 1 value: cellheight [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local cellheight = object:GetCellHeight()</pre>
+		
+		<strong>SetCellSize</strong> - Sets the size of the object's cells
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetCellSize(cellwidth[number], cellheight[number])</pre>
+		
+		<strong>GetCellSize</strong> - Gets the size of the object's cells <br/>
+		- Returns 2 value: cellwidth [number], cellheight [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local cellwidth, cellheight = object:GetCellSize()</pre>
+		
+		<strong>SetCellPadding</strong> - Sets the padding of the object's cells
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetCellPadding(cellpadding[number])</pre>
+		
+		<strong>GetCellPadding</strong> - Gets the padding of the object's cells <br/>
+		- Returns 1 value: cellpadding [number]
+		
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local cellpadding = object:GetCellPadding()</pre>
+		
+	</div>
+	
+	<script type="text/javascript">SyntaxHighlighter.all();</script> 
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>

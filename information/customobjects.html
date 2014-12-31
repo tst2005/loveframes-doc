@@ -1,0 +1,139 @@
+
+			<html>
+			<head>
+			<link href="../static/css/main.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/src/shCore.js"></script>
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/scripts/shBrushLua.js"></script>
+			</head>
+			<body>
+			<div id="container">
+			<div id="content"> 	<div class="content-header">
+		L&#246;ve Frames - Custom Objects
+	</div>
+	
+	<a href="../main.html" class="document-link" style="text-align: center;">Return to Index</a>
+	
+	<div class="content-section-body">
+		Creating your own custom objects and loading them into Love Frames is quite a simple process. Just follow the steps below.
+	</div>
+	
+	<div class="content-section-header">
+		Setting Up
+	</div>
+	
+	<div class="content-section-body">
+		To create a custom object to use within Love Frames, you first need create a Lua file for the object. Then place the Lua file in Love Frame's objects directory and open it.
+	</div>
+	
+	<div class="content-section-header">
+		Creating the Object
+	</div>
+	
+	<div class="content-section-body">
+		To actually create the custom object and have it registered with Love Frames, you need to call <strong>loveframes.NewObject</strong> from within the Lua file that you have created.
+		<strong>loveframes.NewObject</strong> takes 3 arguments. The first argument is a unique id for the object which will be used to create the object with <strong>loveframes.Create</strong>.
+		The second argument is a unique name for the object which will be used by middleclass to actually create the object. The third agument is an optional boolean that specifies whether or
+		not the object should be derrived from the Love Frames base object. When you call <strong>loveframes.NewObject</strong>, it will return the object that it has just created, allowing you
+		to assign custom properties and methods to the object. Below is an example of what a basic custom object might look like:
+		
+		<div class="code" style="margin-top: 10px; margin-bottom: 10px;">
+			<textarea id="codebox1">local newobject = loveframes.NewObject("customobject", "loveframes_object_custom", true)
+
+function newobject:initialize()
+
+	self.text = "Custom Object"
+	
+end
+
+function newobject:update(dt)
+	
+	local state = loveframes.state
+	local selfstate = self.state
+
+	if state ~= selfstate then
+		return
+	end
+
+	local visible = self.visible
+	local alwaysupdate = self.alwaysupdate
+
+	if not visible then
+		if not alwaysupdate then
+			return
+		end
+	end
+
+	local children = self.children
+	local parent = self.parent
+	local base = loveframes.base
+	local update = self.Update
+
+	-- move to parent if there is a parent
+	if parent ~= base and parent.type ~= "list" then
+		self.x = self.parent.x + self.staticx
+		self.y = self.parent.y + self.staticy
+	end
+
+	self:CheckHover()
+
+	for k, v in ipairs(children) do
+		v:update(dt)
+	end
+
+	if update then
+		update(self, dt)
+	end
+	
+end
+
+function newobject:draw()
+
+	local state = loveframes.state
+	local selfstate = self.state
+
+	if state ~= selfstate then
+		return
+	end
+
+	local visible = self.visible
+
+	if not visible then
+		return
+	end
+
+	local x = self.x
+	local y = self.y
+	local width = self.width
+	local height = self.height
+	local text = self.text
+	local children = self.children
+	
+	-- set the object's draw order
+	self:SetDrawOrder()
+
+	if draw then
+		draw(self)
+	else
+		love.graphics.setColor(255, 255, 255, 255)
+		love.graphics.rectangle("fill", x, y, width, height)
+		love.graphics.setColor(0, 0, 0, 255)
+		love.graphics.print(text, x + 5, y + 5)
+	end
+
+	-- loop through the object's children and draw them
+	for k, v in ipairs(children) do
+		v:draw()
+	end
+
+end</textarea>
+		</div>
+	</div>
+	
+	<script>FormatCode();</script> 
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>

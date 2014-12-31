@@ -1,0 +1,116 @@
+
+			<html>
+			<head>
+			<link href="../static/css/main.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+			<link href="../static/syntaxhighlighter_3.0.83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/src/shCore.js"></script>
+			<script type="text/javascript" src="../static/syntaxhighlighter_3.0.83/scripts/shBrushLua.js"></script>
+			</head>
+			<body>
+			<div id="container">
+			<div id="content"> 	<div class="content-header">
+		L&#246;ve Frames - The Form Object
+	</div>
+
+	<a href="../main.html" class="document-link" style="text-align: center;">Return to Index</a>
+	
+	<div class="content-section-header">
+		Information
+	</div>
+	
+	<div class="content-section-body">
+		The form object can be used to group objects into a simple layout.
+	</div>
+	
+	<div class="content-section-header">
+		Example Use
+	</div>
+	
+	<div class="content-section-body">
+		<pre class="brush: lua">local frame = loveframes.Create("frame")
+frame:SetName("Form")
+frame:SetSize(500, 80)
+frame:CenterWithinArea(unpack(demo.centerarea))
+		
+local form = loveframes.Create("form", frame)
+form:SetPos(5, 25)
+form:SetSize(490, 65)
+form:SetLayoutType("horizontal")
+	
+for i=1, 3 do
+	local button = loveframes.Create("button")
+	button:SetText(i)
+	button:SetWidth((490/3) - 7)
+	form:AddItem(button)
+end</pre>
+
+		<div style="text-align: center;">
+			<img src="../static/images/documents/loveframes/form.png">
+		</div>
+	
+	</div>
+	
+	<div class="content-section-header">
+		Event Callbacks
+	</div>
+	
+	<div class="content-section-body">
+		The form object has not unique event callbacks.
+	</div>
+
+	<div class="content-section-header">
+		Methods
+	</div>
+
+	<div class="content-section-body">
+	
+		<strong>AddItem</strong> - Adds an item to the object
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:AddItem(item[object])</pre>
+		
+		<strong>RemoveItem</strong> - Removes an item from the object
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:RemoveItem(item[number or object])</pre>
+		
+		<strong>LayoutObjects</strong> - Recalculates the layout of the object's children <br/>
+		- Note: This method is called internally by the object. Most developers should never need to call this method directly.
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:LayoutObjects()</pre>
+		
+		<strong>SetLayoutType</strong> - Sets the object's layout type <br/>
+		- Note: Acceptable layout types are <strong>vertical</strong> or <strong>horizontal</strong>
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetLayoutType(layout_type[string])</pre>
+		
+		<strong>GetLayoutType</strong> - Gets the object's layout type <br/>
+		- Returns 1 value: layout_type [string]
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local layout_type = object:GetLayoutType()</pre>
+		
+		<strong>SetTopMargin</strong> - Sets the margin between the top of the object and its children
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetTopMargin(top_margin[number])</pre>
+		
+		<strong>GetTopMargin</strong> - Gets the margin between the top of the object and its children <br/>
+		- Returns 1 value: top_margin [string]
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local top_margin = object:GetTopMargin()</pre>
+		
+		<strong>SetName</strong> - Sets the object's name
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">object:SetName(name[string])</pre>
+		
+		<strong>GetName</strong> - Gets the object's name <br/>
+		- Returns 1 value: name [string]
+
+		<pre class="brush: lua" style="margin-top: 10px; margin-bottom: 10px;">local name = object:GetName()</pre>
+		
+	</div>
+	
+	<script type="text/javascript">SyntaxHighlighter.all();</script> 
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>

@@ -1,7 +1,7 @@
 Löve Frames Doc
 ===============
 
-This documentation online viewable at :
+This documentation is viewable at :
 
  * http://tst2005.github.io/LoveFramesDoc/
 
